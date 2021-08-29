@@ -45,6 +45,55 @@ fn fun4() {
     loop {
         //i = i + 1;
         //i = i.checked_add(k);
+        return
+    }
+}
+
+fn gcd(mut n:u64, mut m: u64) -> u64 {
+    assert!(n != 0 && m != 0);
+    debug_assert!(n != 0 && m != 0);
+    while m != 0 {
+        if m < n {
+            let t = m;
+            m = n;
+            n = t;
+        }
+        m = m % n;
+    }
+    n
+}
+
+//Oneliner
+/*
+   Multiline
+ */
+#[test]
+fn test_gcd() {
+    assert_eq!(gcd(14, 15), 1);
+    //assert_eq!(gcd(2 * 3 * 5 * 11 * 17, 3 * 7 * 11 * * 13 * 19), 3 * 11);
+    assert_eq!(gcd(2 * 3 * 5 * 11 * 17, 3 * 7 * 11 * 13 * 19), 3 * 11);
+}
+
+fn fun5() {
+    let _a: i8;
+    let _b: u8;
+    let _c: i16;
+    let _d: u16;
+    let _e: i32;
+    let _f: u32;
+    let _g: i64;
+    let _k: u64;
+    let _l: i128;
+    let _m: u128;
+    let _n: f32;
+    let _o: f64;
+}
+
+fn fun6() -> u32 {
+    {
+        let v = 100;
+        println!("{}", v);
+        v
     }
 }
 

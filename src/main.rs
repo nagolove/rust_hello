@@ -42,6 +42,15 @@ fn fun4() {
     //let mut i: u64 = 1;
     let mut i: i16 = 1;
     let k: i16 = 1;
+    let ok: bool = false;
+    let ok1: bool = false;
+    let ch: char = 'a';
+    let ch: i8;
+    //ch.div_euclidj
+    // char utf8  от 1 байта до 4х. В зависимости от полноты поддержки.
+    if ok == true {
+        println!("ok is {}", ok)
+    }
     loop {
         //i = i + 1;
         //i = i.checked_add(k);
@@ -75,7 +84,12 @@ fn test_gcd() {
 }
 
 fn fun5() {
-    let _a: i8;
+    let _a: i8 = 0b10_000_00;
+    let _a_unsigned: u8 = 0b10_00_00_01;
+    //use std::opts;
+    use std::ops::Shl;
+    let _a = _a.shl(3);
+    //println!("size_of(_a) {}", _a.size_of _a);
     let _b: u8;
     let _c: i16;
     let _d: u16;
@@ -87,6 +101,13 @@ fn fun5() {
     let _m: u128;
     let _n: f32;
     let _o: f64;
+    //_a.cmp
+    //_o.ceil().le
+    //_a.cmp
+    //_o.asin(0.).asin(1.).hypot(
+    loop {
+        break
+    }
 }
 
 fn fun6() -> u32 {
@@ -95,6 +116,30 @@ fn fun6() -> u32 {
         println!("{}", v);
         v
     }
+}
+
+use std::io::Write;
+use std::str::FromStr;
+
+
+fn fun7() {
+    let mut numbers = Vec::new();
+    for arg in std::env::args().skip(1) {
+        numbers.push(u64::from_str(&arg).expect("parsing argument error"));
+    }
+    if numbers.len() == 0 {
+        writeln!(std::io::stderr(), "Usage: gcd NUMBER").unwrap();
+        std::process::exit(1);
+    }
+    let mut d = numbers[0];
+    for m in &numbers[1..] {
+        d = gcd(d, *m);
+    }
+
+    println!("greatest gcd of {:?} is {}", numbers, d);
+}
+
+fn fun8() {
 }
 
 fn main() {

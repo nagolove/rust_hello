@@ -1,6 +1,7 @@
 use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
+use std::env;
 
 //#[warn(dead_code)] 
 //fn foo() -> u64 {
@@ -32,7 +33,9 @@ fn fun3() {
     let line: u32 = line.trim().parse().expect("Should be a number");
 
     match line.cmp(&secret) {
-        Ordering::Less => println!("small"),
+        Ordering::Less => {
+            println!("small"); fn sub(){}
+        }
         Ordering::Greater => println!("big"),
         Ordering::Equal => println!("win"),
     }
@@ -140,9 +143,170 @@ fn fun7() {
 }
 
 fn fun8() {
+    for i in 0..5 {
+        for j in -1..0b1111 {
+            println!("i * j = {}", i * j);
+            let even_odd = if (i * j) % 2 == 0 {"even"} else {"odd"};
+            println!("{} {}", even_odd, i);
+        }
+    }
 }
 
+fn fun9() {
+    let mut sum = 0.;
+    for i in 0..5 {
+        sum += i as f32;
+    }
+    println!("sum is {}", sum);
+}
+
+/*
+ *use std::fmt::Display;
+ *impl<T: Display> ToString for T {
+ *    let i: T;
+ *    // snip
+ *}
+ */
+
 fn main() {
-    //fun3();
+    fun1();
+    fun2();
+    fun3();
     fun4();
+    fun5();
+    fun6();
+    fun7();
+    fun8();
+    fun10();
+}
+
+fn abs(x: f64) -> f64 {
+    if x > 0.0 {
+        x
+    } else {
+        -x
+    }
+}
+
+fn clamp(x: f64, x1: f64, x2: f64) -> f64 {
+    if x < x1 {
+        x1
+    } else if x > x2 {
+        x2
+    } else {
+        x
+    }
+}
+
+fn factorial(n: u64) -> u64 {
+    if n == 0 {
+        1
+    } else {
+        n * factorial(n - 1)
+    }
+}
+
+fn by_ref(x: &i32) -> i32 {
+    *x + 1
+}
+
+fn modifies(x: &mut f64) {
+    *x = 1.0;
+}
+
+fn fun10() {
+    let i = 10;
+    let res1 = by_ref(&i);
+    let res2 = by_ref(&41);
+    println!("{} {}", res1, res2);
+    
+    let mut res = 0.0;
+    modifies(&mut res);
+    println!("res is {}", res);
+}
+
+fn fun11() {
+    let mut line = String::new();
+    //line[1] = '1';
+    io::stdin().read_line(&mut line).expect("Error");
+    let secret = rand::thread_rng().gen_range(1..11);
+    let line: u32 = line.trim().parse().expect("Should be a number");
+
+    let args: Vec<String> = env::args().collect();
+
+    //match line.cmp(&args) {
+        //Ordering::Less => {
+            //println!("small"); fn sub(){}
+        //}
+        //Ordering::Greater => println!("big"),
+        //Ordering::Equal => println!("win"),
+    //}
+    
+    let args: Vec<String> = env::args().collect(); 
+    //for &i in args { 
+    //for i in args { 
+        //match i { 
+            //"--help" => println!("Fuckstringdoc");
+        //}
+    //}
+}
+
+use std::thread;
+use std::time::Duration;
+use std::sync::{Mutex, Arc};
+
+struct Node {
+    name: String,
+    left: usize, // usize == size_t ??
+    //mutex: Mutex<()>,
+    mutex: Mutex<()>,
+}
+
+impl Node {
+    //fn new(name: &str) -> Node {
+    fn new(name: &String) -> Node {
+        Node {
+            name: name.to_string(),
+            left: 0,
+            //mutex: Mutex::new(()),
+            // пустые скобки - unit value
+            mutex: Mutex::new(()),
+        }
+    }
+
+    fn bar(&self) -> i8 {
+        let tuple = (1, 2);
+        self.mutex.lock();
+        thread::sleep(Duration::from_millis(100));
+        self.mutex.lock();
+        tuple.1
+    }
+}
+
+trait Printer {
+    fn about(&self);
+}
+
+struct Person {
+    //name: str,
+    name: String,
+}
+
+impl Person {
+    fn new() -> Person {
+        Person {
+            name: "default".to_string(),
+        }
+    }
+}
+
+impl Printer for Person {
+    fn about(&self) {
+        println!("name is {}", self.name);
+    }
+}
+
+fn fun12() {
+    let p = Person::new();
+    let p: Person = Person::new();
 }

@@ -3,6 +3,8 @@ use rand::Rng;
 use std::cmp::Ordering;
 use std::env;
 
+include!("lib.rs");
+
 //#[warn(dead_code)] 
 //fn foo() -> u64 {
     //2
@@ -284,6 +286,7 @@ impl Node {
 }
 
 trait Printer {
+    fn about2(&self, n: i8);
     fn about(&self);
 }
 
@@ -298,9 +301,14 @@ impl Person {
             name: "default".to_string(),
         }
     }
+    fn сделать_чтото() -> () {
+    }
 }
 
 impl Printer for Person {
+    fn about2(&self, n: i8) {
+        println!("name is {}", self.name);
+    }
     fn about(&self) {
         println!("name is {}", self.name);
     }
@@ -309,4 +317,39 @@ impl Printer for Person {
 fn fun12() {
     let p = Person::new();
     let p: Person = Person::new();
+    p.about();
 }
+
+fn fun13() {
+    init();
+}
+
+fn fun14() {
+    //for arg in env::args().skip(1) { =>
+    let str3 = "str3";
+    let args = vec!["str1", "str2", str3];
+    | x: i8 | x * x;
+    | x: u64, y: u64 | (x * x, y);
+    for arg in args {
+        match arg {
+            "--table" | "-t" => println!("1\n\n"),
+            _ => println!("трололо пьет мед и молоко")
+        };
+    }
+}
+
+type Functor = fn(i8, i8) -> fn() -> fn() -> fn() -> i8;
+
+fn fun15(f: Functor) -> Functor {
+    f(0, 0);
+    f
+}
+
+use std::result;
+
+enum ConcreteError {
+    Foo,
+    Bar,
+}
+
+type Result<T> = result::Result<T, ConcreteError>;

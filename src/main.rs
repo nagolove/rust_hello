@@ -1,13 +1,15 @@
-use std::io;
+#![allow(unused)]
+
 use rand::Rng;
 use std::cmp::Ordering;
 use std::env;
+use std::io;
 
 include!("lib.rs");
 
-//#[warn(dead_code)] 
+//#[warn(dead_code)]
 //fn foo() -> u64 {
-    //2
+//2
 //}
 
 fn fun1() {
@@ -36,7 +38,8 @@ fn fun3() {
 
     match line.cmp(&secret) {
         Ordering::Less => {
-            println!("small"); fn sub(){}
+            println!("small");
+            fn sub() {}
         }
         Ordering::Greater => println!("big"),
         Ordering::Equal => println!("win"),
@@ -59,11 +62,11 @@ fn fun4() {
     loop {
         //i = i + 1;
         //i = i.checked_add(k);
-        return
+        return;
     }
 }
 
-fn gcd(mut n:u64, mut m: u64) -> u64 {
+fn gcd(mut n: u64, mut m: u64) -> u64 {
     assert!(n != 0 && m != 0);
     debug_assert!(n != 0 && m != 0);
     while m != 0 {
@@ -79,8 +82,8 @@ fn gcd(mut n:u64, mut m: u64) -> u64 {
 
 //Oneliner
 /*
-   Multiline
- */
+  Multiline
+*/
 #[test]
 fn test_gcd() {
     assert_eq!(gcd(14, 15), 1);
@@ -111,7 +114,7 @@ fn fun5() {
     //_a.cmp
     //_o.asin(0.).asin(1.).hypot(
     loop {
-        break
+        break;
     }
 }
 
@@ -125,7 +128,6 @@ fn fun6() -> u32 {
 
 use std::io::Write;
 use std::str::FromStr;
-
 
 fn fun7() {
     let mut numbers = Vec::new();
@@ -148,7 +150,7 @@ fn fun8() {
     for i in 0..5 {
         for j in -1..0b1111 {
             println!("i * j = {}", i * j);
-            let even_odd = if (i * j) % 2 == 0 {"even"} else {"odd"};
+            let even_odd = if (i * j) % 2 == 0 { "even" } else { "odd" };
             println!("{} {}", even_odd, i);
         }
     }
@@ -221,7 +223,7 @@ fn fun10() {
     let res1 = by_ref(&i);
     let res2 = by_ref(&41);
     println!("{} {}", res1, res2);
-    
+
     let mut res = 0.0;
     modifies(&mut res);
     println!("res is {}", res);
@@ -237,25 +239,25 @@ fn fun11() {
     let args: Vec<String> = env::args().collect();
 
     //match line.cmp(&args) {
-        //Ordering::Less => {
-            //println!("small"); fn sub(){}
-        //}
-        //Ordering::Greater => println!("big"),
-        //Ordering::Equal => println!("win"),
+    //Ordering::Less => {
+    //println!("small"); fn sub(){}
     //}
-    
-    let args: Vec<String> = env::args().collect(); 
-    //for &i in args { 
-    //for i in args { 
-        //match i { 
-            //"--help" => println!("Fuckstringdoc");
-        //}
+    //Ordering::Greater => println!("big"),
+    //Ordering::Equal => println!("win"),
+    //}
+
+    let args: Vec<String> = env::args().collect();
+    //for &i in args {
+    //for i in args {
+    //match i {
+    //"--help" => println!("Fuckstringdoc");
+    //}
     //}
 }
 
+use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
-use std::sync::{Mutex, Arc};
 
 struct Node {
     name: String,
@@ -301,8 +303,7 @@ impl Person {
             name: "default".to_string(),
         }
     }
-    fn сделать_чтото() -> () {
-    }
+    fn сделать_чтото() -> () {}
 }
 
 impl Printer for Person {
@@ -328,12 +329,12 @@ fn fun14() {
     //for arg in env::args().skip(1) { =>
     let str3 = "str3";
     let args = vec!["str1", "str2", str3];
-    | x: i8 | x * x;
-    | x: u64, y: u64 | (x * x, y);
+    |x: i8| x * x;
+    |x: u64, y: u64| (x * x, y);
     for arg in args {
         match arg {
             "--table" | "-t" => println!("1\n\n"),
-            _ => println!("трололо пьет мед и молоко")
+            _ => println!("трололо пьет мед и молоко"),
         };
     }
 }
